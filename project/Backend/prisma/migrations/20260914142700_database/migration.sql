@@ -11,9 +11,9 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Game" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "day" TEXT NOT NULL,
-    "month" TEXT NOT NULL,
-    "year" TEXT NOT NULL,
+    "day" INTEGER NOT NULL,
+    "month" INTEGER NOT NULL,
+    "year" INTEGER NOT NULL,
     "score" INTEGER NOT NULL,
     "combo" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,

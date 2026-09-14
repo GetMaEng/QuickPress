@@ -1,7 +1,7 @@
-import { db } from "../index.ts";
+import { prisma } from "../lib/prisma.ts";
 
 const createGame = async (day: number, month: number, year: number, score: number, combo: number, userId: number) => {
-    const game = await db.game.create({
+    const game = await prisma.game.create({
         data: {
             day: day,
             month: month,
@@ -15,7 +15,7 @@ const createGame = async (day: number, month: number, year: number, score: numbe
 }
 
 const deleteGame = async (id: number) => {
-    const game = await db.game.delete({
+    const game = await prisma.game.delete({
         where: {
             id: id
         }
@@ -24,7 +24,7 @@ const deleteGame = async (id: number) => {
 }
 
 const getAllGame = async (userId: number) => {
-    const game = await db.game.findMany({
+    const game = await prisma.game.findMany({
         where: {
             userId: userId
         }

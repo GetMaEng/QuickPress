@@ -1,7 +1,7 @@
-import { db } from "../index.ts";
+import { prisma } from "../lib/prisma.ts";
 
 const isDuplicate = async( username: string, email: string ) => {
-    const user = await db.user.findFirst({
+    const user = await prisma.user.findFirst({
         where: {
             OR: [
             { username: username },
@@ -13,7 +13,7 @@ return user;
 }
 
 const createUser = async( username: string, email: string, password: string ) => {
-    const user = await db.user.create({
+    const user = await prisma.user.create({
         data: {
             username: username,
             email: email,
@@ -24,7 +24,7 @@ const createUser = async( username: string, email: string, password: string ) =>
 }
 
 const loginUser = async ( email: string) => {
-    const user = await db.user.findUnique({
+    const user = await prisma.user.findUnique({
         where: {
             email: email,
         }
@@ -33,12 +33,12 @@ const loginUser = async ( email: string) => {
 }
 
 const getAllInfoUser = async () => {
-  const user = await db.user.findMany()
+  const user = await prisma.user.findMany()
   return user;
 }
 
 const getInfoUser = async (id: number) => {
-  const user = await db.user.findFirst({
+  const user = await prisma.user.findFirst({
     where: {
         id: id
     }
@@ -47,7 +47,7 @@ const getInfoUser = async (id: number) => {
 }
 
 const editUsername = async ( id: number, username: string) => {
-    const user = await db.user.update({
+    const user = await prisma.user.update({
         where: {
             id: id
         },
@@ -59,7 +59,7 @@ const editUsername = async ( id: number, username: string) => {
 }
 
 const editScore = async (id: number, highestScore: number) => {
-    const user = await db.user.update({
+    const user = await prisma.user.update({
         where: {
             id: id
         },
@@ -71,7 +71,7 @@ const editScore = async (id: number, highestScore: number) => {
 }
 
 const editCombo = async (id: number, highestCombo: number) => {
-    const user = await db.user.update({
+    const user = await prisma.user.update({
         where: {
             id: id
         },
