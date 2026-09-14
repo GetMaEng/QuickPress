@@ -9,7 +9,6 @@
 		"jsx": "react-jsx",
 		"jsxImportSource": "hono/jsx",
 		"declaration": true,
-		"emitDeclarationOnly": true,
-		"allowImportingTsExtensions": true
+		"emitDeclarationOnly": true
 	}
 }

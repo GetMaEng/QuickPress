@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import * as gameController from "../controllers/game.controller.ts";
+import * as gameController from "../controllers/game.controller.js";
 
 const gameRouter = new Hono();
 

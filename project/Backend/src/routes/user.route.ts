@@ -1,6 +1,6 @@
 import { Hono } from "hono";
-import * as userController from "../controllers/user.controller.ts";
-import { authMiddleware } from "../middlewares/auth.middleware.ts"
+import * as userController from "../controllers/user.controller.js";
+import { authMiddleware } from "../middlewares/auth.middleware.js"
 const userRouter = new Hono();
 
 userRouter.post("/", userController.createUser);

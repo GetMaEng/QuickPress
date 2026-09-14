@@ -1,4 +1,4 @@
-import { prisma } from "../lib/prisma.ts";
+import { prisma } from "../lib/prisma.js";
 
 const createGame = async (day: number, month: number, year: number, score: number, combo: number, userId: number) => {
     const game = await prisma.game.create({

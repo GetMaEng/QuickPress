@@ -30,3 +30,15 @@ lerna-debug.log*
 /src/generated/prisma
 
 /generated/prisma
+
+.vercel
+.env*
+
+# Keep the shareable template and the Neon agent skills out of the way
+!.env.example
+.agents/
+skills-lock.json
+
+# SQLite leftovers - the database is Neon Postgres now
+*.db
+.claude/skills/

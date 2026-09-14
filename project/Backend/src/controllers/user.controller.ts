@@ -1,7 +1,12 @@
 import type { Context } from "hono";
-import * as userModel from "../models/user.model.ts";
+import * as userModel from "../models/user.model.js";
 import jwt from "jsonwebtoken"
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
+import { deleteCookie, setCookie } from "hono/cookie";
+
+// Vercel serves over HTTPS, so the auth cookie must be Secure there. Locally
+// the frontend runs on plain http://localhost, where Secure would be dropped.
+const isProduction = process.env.NODE_ENV === "production";
 
 type createUserBody = {
 	username: string;
@@ -108,7 +113,13 @@ const loginUser = async (c: Context) => {
       expiresIn: "1d",
     });
 
-    c.header("Set-Cookie", `token=${token}; HttpOnly; Path=/; Max-Age=604800`);
+    setCookie(c, "token", token, {
+      httpOnly: true,
+      path: "/",
+      maxAge: 604800,
+      secure: isProduction,
+      sameSite: "Lax",
+    });
     c.set("user", user);
 
     return c.json({ 
@@ -127,7 +138,11 @@ const getMe = async (c: Context) => {
 };
 
 const logOut = (c: Context) => {
-  c.header("Set-Cookie", `token=; HttpOnly; Path=/; Max-Age=0`);
+  deleteCookie(c, "token", {
+    path: "/",
+    secure: isProduction,
+    sameSite: "Lax",
+  });
   return c.json({ success: true, msg: "Logged out" });
 };
 

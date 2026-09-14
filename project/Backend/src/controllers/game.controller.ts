@@ -1,5 +1,5 @@
 import type { Context } from "hono";
-import * as gameModel from "../models/game.model.ts";
+import * as gameModel from "../models/game.model.js";
 
 const createGame = async (c: Context) => {
     try {
