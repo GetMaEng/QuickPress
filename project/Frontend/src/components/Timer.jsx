@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react'
 
 const Timer = ({start, setStart, setShowResult}) => {
 
-    const [timeLeft, setTimeLeft] = useState(30);
+    const [timeLeft, setTimeLeft] = useState(90);
     const readySet = ['Ready','3','2','1','Start']
     const [ready, setReady] = useState()
     const [count, setCount] = useState(0);
