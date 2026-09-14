@@ -15,7 +15,7 @@ const Timer = ({start, setStart, setShowResult}) => {
         if (start && timeLeft <= 0) {
             setStart(false);
             setShowResult(true);
-            setTimeLeft(30);
+            setTimeLeft(90);
         }
 
         if (!start || timeLeft <= 0) return;
